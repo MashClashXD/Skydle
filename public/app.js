@@ -266,7 +266,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
 
                 if (attr.label === 'Price' && Math.abs(item.price - answerItem.price) <= 25000000  && 
-                attr.value.includes('↓') || attr.value.includes('↑')) {
+                (attr.value.includes('↓') || attr.value.includes('↑'))) {
                     setTimeout(() => {
                         cardDiv.classList.add('close');
                     }, 750);
