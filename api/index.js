@@ -3,8 +3,9 @@ const fs = require('fs');
 const app = express();
 const PORT = 3000;
 
-const itemsFilePath = path.join(__dirname, '..', 'items.txt');
 app.use(express.static('public'));
+
+const itemsFilePath = path.resolve(__dirname, 'items.txt');
 
 app.get('/api/items', (req, res) => {
     fs.readFile(itemsFilePath, 'utf8', (err, data) => {
