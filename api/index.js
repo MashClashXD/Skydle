@@ -1,6 +1,5 @@
 const express = require('express');
 const fs = require('fs');
-const app = require("./public/app.js");
 const app = express();
 const PORT = 3000;
 
