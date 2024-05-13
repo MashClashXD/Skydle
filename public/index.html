@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Play Skydle</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        html, body {
+            width: 100%; /* Ensures the body takes full viewport width */
+            height: auto; /* Allows the body height to be as tall as its content */
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center; /* Centers content horizontally */
+            background-color: #121212; /* Dark background */
+            color: #e0e0e0; /* Light text */
+        }
+        .container {
+            width: 600px; /* Set a fixed width for the container */
+            padding: 20px;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+        }
+        #results {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            width: 100%;
+        }
+        .card-header {
+            font-size: 18px; /* Larger text size for headers */
+            font-weight: bold; /* Make header text bold */
+            color: #ffffff; /* Optional: specific text color for headers */
+            border-bottom: none; /* Ensures no border is applied at the bottom */
+            padding-bottom: 0; /* Removes padding that might be adding extra space */
+            margin-bottom: 0; /* Ensures no margin at the bottom, closer to the text below */
+        }
+        .card-body {
+            font-size: 20px; /* Smaller text size for body content */
+            color: #ffffff; /* Optional: different text color for body to distinguish from header */
+        }
+
+        .card-text {
+            margin: 0; /* Removes any default margins */
+        }
+        .large-card {
+            justify-content: center; /* Vertically centers the content */
+            align-items: center; /* Horizontally centers the content */
+            width: 300px; /* Larger width */
+            height: 100px; /* Larger height */
+            margin: 5px;
+            flex-grow: 1; /* Prevent growth to respect fixed dimensions */
+            background-color: #464646; /* Darker background for large card */
+            color: #ffffff; /* Light gray text for contrast */
+        }
+
+        .small-card {
+            justify-content: center; /* Vertically centers the content */
+            align-items: center; /* Horizontally centers the content */
+            width: 300px; /* Standard width */
+            height: 100px; /* Standard height */
+            margin: 5px;
+            flex-grow: 1; /* Prevent growth to respect fixed dimensions */
+            background-color: #464646; /* Slightly lighter than large card */
+            color: #ffffff; /* Lighter gray text for contrast */
+        }
+        .card {
+            /* Your existing styles */
+            position: relative;
+            transition: background-color 0.5s; /* Smooth transition for the background color */
+        }
+
+        .card.correct {
+            background-color: #59AA61; /* Green for correct values */
+        }
+        .card.close {
+            background-color: #B8B105; /* Green for correct values */
+        }
+
+        .input-group {
+            position: relative; /* Ensures the absolute positioning of children is relative to this */
+        }
+        .autocomplete-items {
+            position: absolute;
+            border: 1px solid #d4d4d4;
+            border-bottom: none;
+            border-top: none;
+            z-index: 99;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background-color: #333333;
+            overflow: auto; /* Prevents overflow issues */
+            box-sizing: border-box; /* Includes padding and border in the width */
+        }
+        .autocomplete-items div {
+            padding: 10px;
+            cursor: pointer;
+            background-color: #444444; 
+            border-bottom: 1px solid #d4d4d4;
+        }
+        .autocomplete-items div:hover {
+            background-color: #e9e9e9;
+            color: #000000;
+        }
+    </style>       
+</head>
+<body>
+    <div class="container">
+        <h1 class="text-center">Skydle</h1>
+        <p id="guessCountDisplay" class="text-right">Guess 0 of 10</p>
+        <div class="input-group mb-3">
+            <input type="text" class="form-control" id="guessInput" placeholder="Start typing...">
+            <div class="input-group-append">
+                <button class="btn btn-outline-secondary" type="button" id="guessBtn">Guess</button>
+            </div>
+        </div>
+        <div id="results" class="mt-4 row"></div>
+    </div>
+    <script src="app.js"></script>
+</body>
+</html>
