@@ -6,7 +6,7 @@ const PORT = 3000;
 app.use(express.static('public'));
 
 app.get('/api/items', (req, res) => {
-    fs.readFile('items.txt', 'utf8', (err, data) => {
+    fs.readFile('./api/items.txt', 'utf8', (err, data) => {
         if (err) {
             console.error('Failed to read file:', err);
             res.status(500).send('Error reading file');
