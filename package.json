@@ -14,7 +14,7 @@
   "license": "ISC",
   "dependencies": {
     "express": "^4.19.2",
-    "/public/app": "*"
+    "/public/app.js": "*"
   },
   "description": ""
 }
