@@ -141,13 +141,13 @@ document.addEventListener('DOMContentLoaded', function() {
         const resultsDiv = document.getElementById('results');
 
         document.getElementById('guessBtn').addEventListener('click', function() {
-            guessCount++;
             const guessedItem = guessInput.value.trim().toLowerCase();
             let x = items.find(item => item.name.toLowerCase() === guessedItem);
             if (!x) {
                 flashInputRed(guessInput);
                 return;  // Exit the function to stop processing the guess
             }
+            guessCount++;
             if (guessCount > maxGuesses && guessedItem !== answerItem.name.toLowerCase()) {
                 guessCountDisplay.textContent = `Nice Try!`;
                 console.log(guessedItem);
