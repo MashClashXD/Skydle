@@ -13,8 +13,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.19.2",
-    "/public/app.js": "*"
+    "express": "^4.19.2"
   },
   "description": ""
 }
