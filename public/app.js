@@ -1,6 +1,7 @@
 document.addEventListener('DOMContentLoaded', function() {
     const maxGuesses = 10;
-    let guessCount = 0;
+    let guessCount = 1;
+    let resultArray = [];
     let answerItem = null; // This will store the randomly selected item to be guessed
 
     const tierValues = {
@@ -173,8 +174,37 @@ document.addEventListener('DOMContentLoaded', function() {
                     item.price = price;
                     displayItemImage(item.material, item, false);
                     if (guessedItem === answerItem.name.toLowerCase()) {
-                        resultsDiv.innerHTML = `<p>Congratulations! You guessed correctly. The answer was: ${answerItem.name}</p>`;
+                        const messageDiv = document.createElement('div');
+                        messageDiv.textContent = "Congratulations, you guessed it Correctly!"
+                        messageDiv.style.textAlign = 'center'; // Center-align the text
+                        messageDiv.style.fontWeight = 'bold'; 
+                        messageDiv.style.marginBottom = '20px'; // Space between different messages
+            
+                        const buttonWrapper = document.createElement('div');
+                        buttonWrapper.style.display = 'flex';
+                        buttonWrapper.style.justifyContent = 'center'; // Center the button horizontally
+                        buttonWrapper.style.marginTop = '10px'; // Space above the button
+            
+                        const copyButton = document.createElement('button');
+                        copyButton.textContent = 'Share Your Results!';
+                        copyButton.style.padding = '10px 20px';
+                        copyButton.style.fontSize = '16px';
+                        copyButton.style.fontWeight = 'bold';
+                        copyButton.style.color = 'white';
+                        copyButton.style.backgroundColor = '#007bff'; // Blue color, change as needed
+                        copyButton.style.border = 'none';
+                        copyButton.style.borderRadius = '5px';
+                        copyButton.style.cursor = 'pointer';
+                        copyButton.addEventListener('click', () => {
+                            navigator.clipboard.writeText(generateMessage(resultArray));
+                        });
+                        buttonWrapper.appendChild(copyButton);
+            
+                        messageDiv.appendChild(buttonWrapper); // Add the button wrapper to the message div
+                        resultsDiv.innerHTML = ''; // Clear the results div
+                        resultsDiv.appendChild(messageDiv); // Add the message div with the copy button
                         displayItemImage(answerItem.material, item, false);
+                        console.log(resultArray);
                         return;
                     }
                 });
@@ -250,6 +280,7 @@ document.addEventListener('DOMContentLoaded', function() {
             console.log(answerItem.price);
             console.log(item.price);
                 
+            let guessArray = [0,0,0,0];
             attributes.forEach((attr, index) => {
                 const cardDiv = document.createElement('div');
                 cardDiv.style.marginLeft = '22px'
@@ -262,6 +293,12 @@ document.addEventListener('DOMContentLoaded', function() {
                     setTimeout(() => {
                         cardDiv.classList.add('correct');
                     }, 750);
+                    if (attr.label === 'Rarity') {
+                        guessArray[2] = 1;
+                    }
+                    else {
+                        guessArray[3] = 1;
+                    }
                     
                 }
 
@@ -270,14 +307,27 @@ document.addEventListener('DOMContentLoaded', function() {
                     setTimeout(() => {
                         cardDiv.classList.add('close');
                     }, 750);
+                    guessArray[3] = 2;
                 }
 
         
                 // Set the background color to green if the value matches the answer's value
-                if (attr.value.includes('(Correct)') || attr.value === answerItem[attr.label.toLowerCase()]) {
+                if (attr.value === answerItem[attr.label.toLowerCase()]) {
                     setTimeout(() => {
                         cardDiv.classList.add('correct');
                     }, 750);
+                    if (attr.label === 'Category') {
+                        guessArray[0] = 1;
+                    }
+                    else if (attr.label === 'Material'){
+                        guessArray[1] = 1;
+                    }
+                    else if (attr.label === 'Rarity'){
+                        guessArray[2] = 1;
+                    }
+                    else {
+                        guessArray[3] = 1;
+                    }
                 }
         
                 const cardHeader = document.createElement('div');
@@ -301,8 +351,17 @@ document.addEventListener('DOMContentLoaded', function() {
                 cardDiv.appendChild(cardBody);
                 guessContainer.appendChild(cardDiv); // Insert each new attribute card at the top of the resultsDiv
             });
+            resultArray.push(guessArray);
             if (isFinal) {
-                resultsDiv.insertBefore(guessContainer, resultsDiv.firstChild.nextSibling); // Insert just after the final message
+                // Create a message element for the final message
+                const finalMessageElement = document.createElement('p');
+                finalMessageElement.textContent = 'No more guesses left. The Correct answer was:';
+                finalMessageElement.style.textAlign = 'center'; // Center-align the text
+                finalMessageElement.style.fontWeight = 'bold'; // Make the text bold
+
+                // Insert the final message before the guessContainer
+                resultsDiv.insertBefore(finalMessageElement, resultsDiv.firstChild); // Insert just after the final message
+                resultsDiv.insertBefore(guessContainer, finalMessageElement.nextSibling);
             } else {
                 resultsDiv.insertBefore(guessContainer, resultsDiv.firstChild);
             }
@@ -334,10 +393,40 @@ document.addEventListener('DOMContentLoaded', function() {
             messageElement.textContent = 'No more guesses left. The correct answer was:';
         
             // Insert the message element at the top of the resultsDiv
-            resultsDiv.insertBefore(messageElement, resultsDiv.firstChild);
+            resultsDiv.appendChild(messageElement);
         
             // Then display the image corresponding to the answer
+            const messageDiv = document.createElement('div');
+            messageDiv.textContent = ""
+            messageDiv.style.textAlign = 'center'; // Center-align the text
+            messageDiv.style.fontWeight = 'bold'; 
+            messageDiv.style.marginBottom = '20px'; // Space between different messages
+
+            const buttonWrapper = document.createElement('div');
+            buttonWrapper.style.display = 'flex';
+            buttonWrapper.style.justifyContent = 'center'; // Center the button horizontally
+            buttonWrapper.style.marginTop = '10px'; // Space above the button
+
+            const copyButton = document.createElement('button');
+            copyButton.textContent = 'Share Your Results!';
+            copyButton.style.padding = '10px 20px';
+            copyButton.style.fontSize = '16px';
+            copyButton.style.fontWeight = 'bold';
+            copyButton.style.color = 'white';
+            copyButton.style.backgroundColor = '#007bff'; // Blue color, change as needed
+            copyButton.style.border = 'none';
+            copyButton.style.borderRadius = '5px';
+            copyButton.style.cursor = 'pointer';
+            copyButton.addEventListener('click', () => {
+                navigator.clipboard.writeText(generateMessage(resultArray));
+            });
+            buttonWrapper.appendChild(copyButton);
+
+            messageDiv.appendChild(buttonWrapper); // Add the button wrapper to the message div
+            resultsDiv.innerHTML = ''; // Clear the results div
+            resultsDiv.appendChild(messageDiv); // Add the message div with the copy button
             displayItemImage(answerItem.material, answerItem, true); // Pass a new parameter if needed
+            console.log(resultArray);
         }
 
         function flashInputRed(inputElement) {
@@ -347,6 +436,38 @@ document.addEventListener('DOMContentLoaded', function() {
                 inputElement.style.backgroundColor = ''; // Reset background color after 500ms
             }, 500);
         }
+
+        function generateMessage(grid) {
+            // Map the numbers in the grid to emojis
+            grid.pop();
+            const emojis = grid.map(row => row.map(cell => {
+                switch (cell) {
+                    case 0:
+                        return '⬛'; // Black square
+                    case 1:
+                        return '🟩'; // Green square
+                    case 2:
+                        return '🟨'; // Yellow square
+                    default:
+                        return '';
+                }
+            }));
+        
+            // Join the emojis to form rows and then join rows with line breaks
+            const gridString = emojis.map(row => row.join('')).join('\n');
+            let message;
+        
+            // Construct the final message
+            if (guessCount > 10 && resultArray[resultArray.length - 1].every(val => val === 1)) {
+                message = `Skydle ${10}/10\n\n${gridString}`;
+            } else if (guessCount > 10 && !resultArray[resultArray.length - 1].every(val => val === 1)) {
+                message = `Skydle x/10\n\n${gridString}`;
+            } else {
+                message = `Skydle ${guessCount-1}/10\n\n${gridString}`;
+            }
+            return message;
+        }
+        
 
         function compareTierBG(guessedTier, answerTier) {
             const guessedValue = tierValues[guessedTier];
