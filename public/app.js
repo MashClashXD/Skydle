@@ -162,6 +162,9 @@ document.addEventListener('DOMContentLoaded', function() {
                 displayEndGameMessage();
                 return;
             }
+            else if (guessedItem === answerItem.name.toLowerCase()) {
+                guessCountDisplay.textContent = `You Got It!`;
+            }
             else{
                 if (guessCount > maxGuesses){
                     guessCountDisplay.textContent = `You Got It!`;
