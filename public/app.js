@@ -148,6 +148,12 @@ document.addEventListener('DOMContentLoaded', function() {
                 flashInputRed(guessInput);
                 return;  // Exit the function to stop processing the guess
             }
+            if (guessCount === 1) {
+                // Hide the welcome message, example guess, and image
+                document.getElementById('welcomeMessage').style.display = 'none';
+                document.getElementById('exampleGuess').style.display = 'none';
+                document.getElementById('exampleImage').style.display = 'none';
+            }
             guessCount++;
             if (guessCount > maxGuesses && guessedItem !== answerItem.name.toLowerCase()) {
                 guessCountDisplay.textContent = `Nice Try!`;
