@@ -4,7 +4,7 @@ Welcome to Skydle, the Skyblock item guessing game! Guess the correct items to w
 
 ## Example Guess
 
-![Example Guess](./public/guessExample.png)
+![Example Guess](/public/guessExample.png)
 
 ## Known Issues
 
