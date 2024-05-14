@@ -105,6 +105,21 @@
             background-color: #e9e9e9;
             color: #000000;
         }
+        /* Your existing CSS styles here */
+        .center {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        .center img {
+            max-width: 100%; /* Maximum width for the image */
+            height: auto; /* Maintain aspect ratio */
+        }
+        .center p {
+            font-size: min(4vw, 20px);
+        }
     </style>       
 </head>
 <body>
@@ -117,6 +132,11 @@
                 <button class="btn btn-outline-secondary" type="button" id="guessBtn">Guess</button>
             </div>
         </div>
+        <div class="center" id="welcomeMessage">
+            <p>Welcome to Skydle! The Skyblock guessing game!</p>
+            <h4 id="exampleGuess">Example Guess:</h4>
+            <img src="exampleGuess.png" alt="Example Guess" id="exampleImage">
+        </div>        
         <div id="results" class="mt-4 row"></div>
     </div>
     <script src="app.js"></script>
