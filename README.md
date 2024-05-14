@@ -1,10 +1,19 @@
-# Skydle - Skyblock Item Guessing Game
+<a name="readme-top"></a>
+<div align="center">
+  <h1 align="center" style="font-size: 3em;">Skydle</h1>
+
+  <p align="center">
+    A Skyblock item guessing game.
+  </p>
+</div>
+
+## About The Project
+
+<div align="center">
+  <img src="public/guessExample.png" alt="Example Guess" width="50%" height="auto">
+</div>
 
 Welcome to Skydle, the Skyblock item guessing game! Guess the correct items to win.
-
-## Example Guess
-
-![Example Guess](public/guessExample.png)
 
 ## Known Issues
 
@@ -16,3 +25,4 @@ Welcome to Skydle, the Skyblock item guessing game! Guess the correct items to w
 
 https://skydle.vercel.app
 
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
