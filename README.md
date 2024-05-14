@@ -4,12 +4,12 @@
 </div>
 
 <div align="center">
-  <img src="./public/guessExample.png" alt="Example Guess" width="50%" height="auto">
+  <img src="public/guessExample.png" alt="Example Guess" width="50%" height="auto">
 </div>
 
 ## About The Project
 
-Welcome to Skydle, the Skyblock item guessing game! Guess the correct items to win.
+Welcome to Skydle, the Skyblock item guessing game! You are given 10 attempts to guess the chosen item of the day and with each guess you will be given hints to help guide you in the right direction. A new item is chosen everyday at 12am EST so be sure to comeback daily to test your skills!
 
 ## Known Issues
 
