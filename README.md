@@ -4,7 +4,7 @@
 </div>
 
 <div align="center">
-  <img src="public/guessExample.png" alt="Example Guess" width="50%" height="auto">
+  <img src="public/exampleGuess.png" alt="Example Guess" width="50%" height="auto">
 </div>
 
 ## About The Project
@@ -19,6 +19,6 @@ Welcome to Skydle, the Skyblock item guessing game! You are given 10 attempts to
 
 ## Release
 
-[Play Skydle](https://skydle.vercel.app)
+https://skydle.vercel.app
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
